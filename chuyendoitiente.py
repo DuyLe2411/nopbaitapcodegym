@@ -3,3 +3,4 @@ Tỉ_giá = 23000
 VND = USD * Tỉ_giá
 print(f"Số tiền Việt Nam Đồng bạn nhận được sau khi đổi là: {VND}")
 print(f"Số tiền USD bạn muốn đổi: {USD}")
+print("Xin cảm ơn quý khách")
