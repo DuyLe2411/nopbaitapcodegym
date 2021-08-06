@@ -1,2 +1,7 @@
-num = int(input("Số mà bạn chọn là: "))
-print("Số này là số chẵn") if num % 2 == 0 else print("Số này là số lẻ")
+num = float(input("Số mà bạn chọn là: "))
+if num % 2 == 0:
+    print("Số này là số chẵn.")
+if num % 2 == 1:
+    print("Số này là số lẻ")
+else:
+    print("số này không phải số tự nhiên.")
