@@ -1,8 +1,8 @@
 message = '''This is a common message for people, message is private and circulate this with caution'''
 
 def count_words(word):
-    
-    mes = message.split()
+    word = word.lower()
+    mes = message.lower().split()
     num = mes.count(word)
     if word in mes:
         print(f"Số lần từ {word} trong chuỗi là: {num}" )
