@@ -7,17 +7,18 @@ dictionary = {
             'room': 'Căn phòng' 
            }
 english_word = input("Nhập từ bạn cần dịch: ")
-word = True
+
 
 def translate(dictionary):
     global english_word
     for item in dictionary:
         if english_word == item:
-            word = False
-            return print(item + " : " + dictionary[item])
-if word:
-    translate(dictionary)
-else:
-    print(english_word + ' không có trong hệ thống' )
+           
+            return item + " : " + dictionary[item]
 
+translate_word = translate(dictionary)
+if translate_word:
+    print(translate_word)
+else:
+    print(english_word, " not in the dictionary")
 
