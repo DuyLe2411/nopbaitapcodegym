@@ -5,6 +5,7 @@ t = turtle.Turtle()
 turtle.title("ELIPSE")
 t.hideturtle()
 turtle.bgcolor("black")
+t.pensize(4)
 
 t.speed(0)
 color_list = ["green","purple","light blue","sky blue","light green","red","pink","yellow","brown","silver"]
