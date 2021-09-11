@@ -1,96 +1,104 @@
-def get_info_student(student_list, number):
+def get_info_student(student_list, ID):
      
-        if number in student_list:
-            return student_list[number] 
+        if ID in student_list:
+            return student_list[ID] 
     
-def update_info_student(student_list, number, kind_of_in4, student_in4):
-        student_list[number][kind_of_in4] = student_in4
+def update_info_student(student_list, ID, kind_of_in4, student_in4):
+        student_list[ID][kind_of_in4] = student_in4
 
+def add_student(student_list, ID):
+    Name = input("Name: ")
+    Date = input("Date: ")
+    Place = input("Place: ")
+    items = {"Name":Name,"Date":Date,"Place":Place}
+    student_list[ID] = items
+    return student_list
 class Student:
     def __init__(self) :
-        global students_list
-        students_list = {1:{"ID":101,"Name":"Lê Quốc Duy","Date":"24/11/2003", "Place": "Đà Nẵng"},
-                          2:{"ID":102,"Name":"Nguyễn Minh Triết","Date":"08/08/2003", "Place": "Đà Nẵng"},
-                          3:{"ID":103,"Name":"Nguyễn Minh Hiệu","Date":"10/06/2003", "Place": "Đà Nẵng"},
-                          4:{"ID":104,"Name":"Nguyễn Hoàng Khải","Date":"01/08/2003", "Place": "Đà Nẵng"},
-                          5:{"ID":105,"Name":"Hồ Vũ Hùng","Date":"07/04/2003", "Place": "Đà Nẵng"}}
+   
+        self.students_list = {101:{"Name":"Lê Quốc Duy","Date":"24/11/2003", "Place": "Đà Nẵng"},
+                          102:{"Name":"Nguyễn Minh Triết","Date":"08/08/2003", "Place": "Đà Nẵng"},
+                          103:{"Name":"Nguyễn Minh Hiệu","Date":"10/06/2003", "Place": "Đà Nẵng"},
+                          104:{"Name":"Nguyễn Hoàng Khải","Date":"01/08/2003", "Place": "Đà Nẵng"},
+                          105:{"Name":"Hồ Vũ Hùng","Date":"07/04/2003", "Place": "Đà Nẵng"}}
     
     
 
     
-    def control_system(self,student_list):
+    def control_system(self):
         while True:
-            print("Student list:\n " ,student_list, end='\n')
-
+            print('\n\n')
+            print("\t\t\t\t\tStudent list: ")
+            for i in range(len(self.students_list)):
+                print(i+101,': ',self.students_list[i+101],end='\n')
             print("""What do you want to do?
     1. Add
     2. Update
     3. Remove
     4. Search
-    5. Sort
-    6. Exit""")
-            choice = int(input("1,2,3,4,5 or 6?: "))
+    5. Exit""")
+    
+            choice = int(input("1,2,3,4 or 5?: "))
 
 #ADD
             if choice == 1:
-                student_num = int(input("Pick a num: "))
-                get_info_student(student_list,student_num)
-                if student_num in student_list:
-                    print("The student with ", student_num , " number already exists.")
+                ID = int(input("Pick a ID: "))
+            
+                self.ID = ID
+                
+                if self.ID in self.students_list:
+                    print("The student with ", self.ID , " ID already exists.")
                 else:
+                    add_student(self.students_list, self.ID)
                     
-                    sort_of_in4 = input("ID, Name, Date or Place (Type correctly such as 'in4'): ")
-                    student_in4 = input("Add what (Type correctly such as 'in4'): ")
-                    update_info_student(student_list, student_num, sort_of_in4, student_in4)
-                    print("Student list: \n", student_list)
-
+                    
+                   
 #UPDATE
             elif choice == 2:
-                student_num = int(input("Pick a num: "))
-                if student_num in student_list:
+                ID = int(input("Pick a ID: "))
+            
+                self.ID = ID
+                if self.ID in self.students_list:
                     
-                    sort_of_in4 = input("ID, Name, Date or Place: ")
+                    sort_of_in4 = input("Name, Date or Place: ")
+                    self.sort_of_in4 = sort_of_in4
                     student_in4 = input("Add what: ")
-                    update_info_student(self, student_list, student_num,sort_of_in4,student_in4)
-                    print("Student list: ", student_list)
+                    self.student_in4 = student_in4
+                    update_info_student(self.students_list, self.ID, self.sort_of_in4, self.student_in4)
                 else:
-                    print("Student with that ", student_num, " doenst exists.")
+                    print("Student with that ", self.ID, " doenst exists.")
 #REMOVE
             elif choice == 3:
-                student_num = int(input("Pick a num: "))
-                if student_num in student_list:
-                    decision = input("What do you want to remove, (number) or (kind of info) (type correctly the word): ")
-                    if decision.lower() == "number":
-                        del student_list[student_num]
-                        print("Student list: ", student_list)
+                ID = int(input("Pick a ID: "))
+                self.ID = ID
+                if self.ID in self.students_list:
+                    decision = input("What do you want to remove, (ID) or (kind of info) (type correctly the word): ")
+                    if decision.upper() == "ID":
+                        del self.students_list[ID]
                     elif decision.lower() == "kind of info":
-                        sort_of_in4 = input("ID, Name, Date or Place (Type correctly such as 'in4'): ")
-                        del student_list[student_num][sort_of_in4]
-                        print("Student list: ", student_list)
+                        sort_of_in4 = input("Name, Date or Place (Type correctly the word): ")
+                        del self.students_list[ID][sort_of_in4]
                     else:
                         print("ERROR")
                 else:
-                    print("Student with that ", student_num, " doenst exists.")
+                    print("Student with that ", self.ID, " doenst exists.")
 
 #SEARCH
             elif choice == 4:
-                student_num = int(input("Pick a num: "))
-                if student_num in student_list:
-                    print(student_list[student_num])
+                ID = int(input("Pick a ID: "))
+                self.ID = ID
+                if self.ID in self.students_list:
+                    print(self.students_list[ID])
                 else:
-                    print("Student with that ", student_num, " doenst exists.")
-
-#SORT
-            elif choice == 5:
-                student_list.sort()
-                print("Student list: ", student_list)
+                    print("Student with that ", self.ID, " doenst exists.")
+           
 #EXIT
-            elif choice == 6:
+            elif choice == 5:
                 break
             else:
                 print("Invalid input")
 
 S = Student()
-S.control_system(students_list)
+S.control_system()
 
 
